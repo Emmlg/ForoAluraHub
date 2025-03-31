@@ -5,9 +5,6 @@ import com.emmlg.ForoAluraHub.Exceptions.TopicosExceptions;
 import com.emmlg.ForoAluraHub.curso.dto.TopicoAutorCursoDto;
 import com.emmlg.ForoAluraHub.topics.dto.TopicoDto;
 import com.emmlg.ForoAluraHub.topics.modelo.Topic;
-import com.emmlg.ForoAluraHub.user.modelo.Usuario;
-import com.emmlg.ForoAluraHub.topics.repository.TopicosRepository;
-import com.emmlg.ForoAluraHub.user.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +13,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class TopicosService implements ITopicosService {
+public class TopicosService  {
 
+    /*implements ITopicosService
     private final TopicosRepository topicosRepository;
-    private final UsuarioRepository usuarioRepository;
+  //  private final UsuarioRepository usuarioRepository;
 
 
 /* REGLAS PARA AGREGAR TOPICOS
@@ -29,7 +27,7 @@ public class TopicosService implements ITopicosService {
     - respuesta opcional pero si tiene con autor que es username pero internamente unimos a su id_usuario
     - el curso debe de existir en la base de datos o crearlo con la categoria pero se controla con los enums
 
- */
+
 
 @Override
 public TopicoAutorCursoDto addTopico(TopicoAutorCursoDto topicoAutorCursoDto) {
@@ -74,7 +72,7 @@ return topicoAutorCursoDto;
      * - specific topic id : done
      * agregar paginacion :
      * agregar filtro de busquedas :
-     */
+
 
     @Override
     public List<Topic> getAllTopicos() {
@@ -94,7 +92,7 @@ return topicoAutorCursoDto;
     * desde topicos(esto sera muy complicado si tiene muchas respuestas) :
     * - crear mejor su propio enpoint update respuesta
     * relacionarlo con el idtopicos :
-    * -*/
+    * -
     @Override
     public TopicoDto updateTopico(TopicoDto topicoDto, Long idTopico) {
         // 1. Verificar si el tópico existe
@@ -123,7 +121,7 @@ return topicoAutorCursoDto;
 
     /*DELETE To-Do
     * - eliminar un topico y sus datos relacionados:
-    * - eliminar un topico desde una respuesta:*/
+    * - eliminar un topico desde una respuesta:
 
     @Override
     public void deleteTopico(long idtopico) {
@@ -131,6 +129,6 @@ return topicoAutorCursoDto;
             throw new TopicosExceptions("El tópico con ID " + idtopico + " no existe.");
         }
         topicosRepository.deleteById(idtopico); // Elimina el tópico
-    }
+    }*/
 
 }
