@@ -44,7 +44,7 @@ public class Topic {
      * - el topico debe de ver a qué curso pertenece
      */
      @ManyToOne(cascade = CascadeType.PERSIST)
-     @JoinColumn(name = "fk_cursId")
+     @JoinColumn(name = "fk_coursesId")
      private Course cursoName;
 
      /* relacion Topicos:1-->M: Respuesta

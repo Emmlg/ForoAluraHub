@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TopicosRepository extends JpaRepository<Topic, Long> {
+
 /* Al extender desde JpaRepository optenemos metodos como
    - findAll() → Obtiene todos los registros.
    - findById(Long id) → Busca un registro por su ID.
@@ -13,9 +14,9 @@ public interface TopicosRepository extends JpaRepository<Topic, Long> {
    - deleteById(Long id) → Elimina un registro por ID.
 */
     //esto es para validar i existen titulo y 1 mensaje antes de publicar
-boolean existsByTituloAndMensaje(String titulo, String mensaje);
+  // boolean existsByTituloAndMensaje(String titulo, String mensaje);
  // Método derivado para verificar si el mensaje ya existe solo msg
-    boolean existsByMensaje(String mensaje);
+  //  boolean existsByMensaje(String mensaje);
         // Método derivado para verificar si el título ya existe
-    boolean existsByTitulo(String titulo);
+  //  boolean existsByTitulo(String titulo);
 }

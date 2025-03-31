@@ -1,17 +1,15 @@
 package com.emmlg.ForoAluraHub.replies.modelo;
 
-import com.emmlg.ForoAluraHub.topics.modelo.Topic;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
+
 import java.util.Date;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "topic_Replies")
+@Table(name = "Replies")
 public class Reply {
 
     // datos de respuesta
