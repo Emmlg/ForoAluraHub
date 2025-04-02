@@ -1,19 +1,11 @@
 package com.emmlg.ForoAluraHub.topics.service;
 
-import com.emmlg.ForoAluraHub.Exceptions.TopicoDuplicadoException;
-import com.emmlg.ForoAluraHub.Exceptions.TopicosExceptions;
-import com.emmlg.ForoAluraHub.curso.dto.TopicoAutorCursoDto;
-import com.emmlg.ForoAluraHub.topics.dto.TopicoDto;
-import com.emmlg.ForoAluraHub.topics.modelo.Topic;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
-public class TopicosService  {
+public class TopicosService {
 
     /*implements ITopicosService
     private final TopicosRepository topicosRepository;
