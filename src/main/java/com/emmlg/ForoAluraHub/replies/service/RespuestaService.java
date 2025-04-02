@@ -1,26 +1,20 @@
 package com.emmlg.ForoAluraHub.replies.service;
 
-import com.emmlg.ForoAluraHub.Exceptions.RespuestaExceptions;
-import com.emmlg.ForoAluraHub.replies.dto.RespuestaDto;
-import com.emmlg.ForoAluraHub.replies.modelo.Reply;
-import com.emmlg.ForoAluraHub.replies.repository.RespuestaRepository;
-import com.emmlg.ForoAluraHub.topics.modelo.Topic;
-import com.emmlg.ForoAluraHub.topics.repository.TopicosRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
 @Service
 @RequiredArgsConstructor
-public class RespuestaService   {
+public class RespuestaService {
 //implements IRespuesta
 //   private final RespuestaRepository respuestaRepository;
- //  private final UsuarioRepository usuarioRepository;
-  // private final TopicosRepository topicosRepository;
+    //  private final UsuarioRepository usuarioRepository;
+    // private final TopicosRepository topicosRepository;
 
     /* CREATE To-Do
-    * - una respuesta debe tener un usuario :done
-    * - debe tener un topico a que relacionarse
+     * - una respuesta debe tener un usuario :done
+     * - debe tener un topico a que relacionarse
 
      */
 //    @Override
