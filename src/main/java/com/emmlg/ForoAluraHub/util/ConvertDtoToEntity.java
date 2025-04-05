@@ -4,6 +4,8 @@ import com.emmlg.ForoAluraHub.curso.dto.CourseCategoryDto;
 import com.emmlg.ForoAluraHub.curso.dto.CourseDto;
 import com.emmlg.ForoAluraHub.curso.modelo.Course;
 import com.emmlg.ForoAluraHub.curso.modelo.CourseCategory;
+import com.emmlg.ForoAluraHub.topics.dto.TopicDto;
+import com.emmlg.ForoAluraHub.topics.modelo.Topic;
 
 public class ConvertDtoToEntity {
 
@@ -30,4 +32,23 @@ public class ConvertDtoToEntity {
         course.setCategory(courseCategory);
         return course;
     }
+
+    public static Topic convertDtoToEntity(TopicDto topicDto) throws RuntimeException {
+        if (topicDto == null) {
+            return null;
+        }
+        Topic newTopic = new Topic();
+        newTopic.setTopicId(topicDto.getTopicoId());
+        newTopic.setTitle(topicDto.getTitle());
+        newTopic.setMessage(topicDto.getMessage());
+        newTopic.setCreationDate(topicDto.getCreationDate());
+        newTopic.setUpdateDate(topicDto.getUpdateDate());
+        newTopic.setStatus(topicDto.getStatus());
+        Course course = new Course();
+        course.setCourseName(topicDto.getCursoName());
+        newTopic.setCourse(course);
+        return newTopic;
+    }
+
+
 }

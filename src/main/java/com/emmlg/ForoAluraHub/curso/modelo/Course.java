@@ -16,7 +16,7 @@ public class Course {
     @Column(name = "id_course")
     private Integer courseId;
 
-    @Column(name = "course_title")
+    @Column(name = "course_title", unique = true)
     private String courseName;
 
     // relacion con categorias
