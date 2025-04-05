@@ -18,7 +18,7 @@ public class Reply {
     @Column(name = "id_reply")
     private long replyId;
 
-    @Column(name = "reply_message", length = 1000) // longitud maximo de 1000
+    @Column(name = "reply_message", unique = true, length = 3000)
     private String message;
 
     @Column(name = "creation_date")
@@ -29,10 +29,10 @@ public class Reply {
 
 
     /* Many to one Respuestas(M) --> (1) usuario
-    * esto sera bidireccional
-    * - usuarios pueden escribir respuesas
-    * - usuarios pueden ver quien respondio
-    * */
+     * esto sera bidireccional
+     * - usuarios pueden escribir respuesas
+     * - usuarios pueden ver quien respondio
+     * */
     // datos del usuario que escribio
     /*   @JsonBackReference  // Evita la recursión al serializar el usuario de la respuesta
     @ManyToOne

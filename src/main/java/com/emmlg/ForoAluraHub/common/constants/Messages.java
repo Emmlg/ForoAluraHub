@@ -41,5 +41,15 @@ public class Messages {
     public static final String COURSE_ALREADY_EXISTS = "Course Already Exists";
     public static final String COURSE_DELETED = "Course Deleted with success";
 
+    // message - Topics - replies
+    public static final String TOPIC_SEARCH = "Searching Topic";
+    public static final String TOPIC_NOT_FOUND = "Topic Not Found";
+    public static final String TOPIC_ALREADY_EXISTS = "Topic Already Exists";
+    public static final String TOPIC_DELETED = "Topic Deleted with success";
+    public static final String REPLY_SEARCH = "Searching Reply";
+    public static final String REPLY_NOT_FOUND = "Reply Not Found";
+    public static final String REPLY_ALREADY_EXISTS = "Reply Already Exists";
+    public static final String REPLY_DELETED = "Reply Deleted with success";
+
 
 }

@@ -4,6 +4,8 @@ import com.emmlg.ForoAluraHub.curso.dto.CourseCategoryDto;
 import com.emmlg.ForoAluraHub.curso.dto.CourseDto;
 import com.emmlg.ForoAluraHub.curso.modelo.Course;
 import com.emmlg.ForoAluraHub.curso.modelo.CourseCategory;
+import com.emmlg.ForoAluraHub.topics.dto.TopicDto;
+import com.emmlg.ForoAluraHub.topics.modelo.Topic;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -63,4 +65,39 @@ public class ConvertEntityToDto {
                 .collect(Collectors.toList());
     }
 
+    public static TopicDto convertEntityToDto(Topic topic) {
+        if (topic == null) {
+            return null;
+        }
+        return TopicDto.builder()
+                .topicoId(topic.getTopicId())
+                .title(topic.getTitle())
+                .message(topic.getMessage())
+                .status(topic.getStatus())
+                .creationDate(topic.getCreationDate())
+                .updateDate(topic.getUpdateDate())
+                .CursoName(topic.getCourse().getCourseName())
+                .CursoCategory(topic.getCourse().getCategory().getCategoryName())
+                .replies(topic.getReplies()).build();
+    }
+
+    public static List<TopicDto> convertTopicListToDto(List<Topic> topics) {
+        if (topics == null || topics.isEmpty()) {
+            return List.of();
+        }
+
+        return topics.stream()
+                .map(topic ->
+                        TopicDto.builder()
+                                .topicoId(topic.getTopicId())
+                                .title(topic.getTitle())
+                                .message(topic.getMessage())
+                                .status(topic.getStatus())
+                                .creationDate(topic.getCreationDate())
+                                .updateDate(topic.getUpdateDate())
+                                .CursoName(topic.getCourse().getCourseName())
+                                .CursoCategory(topic.getCourse().getCategory().getCategoryName())
+                                .replies(topic.getReplies()).build())
+                .collect(Collectors.toList());
+    }
 }
