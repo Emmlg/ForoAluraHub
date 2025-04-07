@@ -4,6 +4,8 @@ import com.emmlg.ForoAluraHub.curso.dto.CourseCategoryDto;
 import com.emmlg.ForoAluraHub.curso.dto.CourseDto;
 import com.emmlg.ForoAluraHub.curso.modelo.Course;
 import com.emmlg.ForoAluraHub.curso.modelo.CourseCategory;
+import com.emmlg.ForoAluraHub.replies.dto.ReplyDto;
+import com.emmlg.ForoAluraHub.replies.modelo.Reply;
 import com.emmlg.ForoAluraHub.topics.dto.TopicDto;
 import com.emmlg.ForoAluraHub.topics.modelo.Topic;
 
@@ -50,5 +52,16 @@ public class ConvertDtoToEntity {
         return newTopic;
     }
 
+    public static Reply convertDtoToEntity(ReplyDto replyDto) {
+        if (replyDto == null) {
+            return null;
+        }
+        Reply reply = new Reply();
+        reply.setReplyId(replyDto.getReplyId());
+        reply.setMessage(replyDto.getReplyMessage());
+        reply.setCreationDate(replyDto.getCreationDate());
+        reply.setUpdateDate(replyDto.getUpdateDate());
+        return reply;
+    }
 
 }

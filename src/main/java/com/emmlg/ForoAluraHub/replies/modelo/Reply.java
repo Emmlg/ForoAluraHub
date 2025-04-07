@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -12,20 +13,20 @@ import java.util.Date;
 @Table(name = "Replies")
 public class Reply {
 
-    // datos de respuesta
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_reply")
-    private long replyId;
+    private Integer replyId;
 
     @Column(name = "reply_message", unique = true, length = 3000)
     private String message;
 
     @Column(name = "creation_date")
-    private Date creationDate;
+    private LocalDate creationDate;
 
     @Column(name = "update_date")
-    private Date updateDate;
+    private LocalDate updateDate;
 
 
     /* Many to one Respuestas(M) --> (1) usuario
