@@ -5,8 +5,7 @@ import com.emmlg.ForoAluraHub.replies.dto.ReplyDto;
 import com.emmlg.ForoAluraHub.replies.modelo.Reply;
 import com.emmlg.ForoAluraHub.replies.repository.ReplyRepository;
 import com.emmlg.ForoAluraHub.topics.repository.TopicRepository;
-import com.emmlg.ForoAluraHub.topics.service.TopicService;
-import com.emmlg.ForoAluraHub.util.GeneralRespose;
+import com.emmlg.ForoAluraHub.util.GeneralResponse;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,13 +24,19 @@ public class ReplyService implements IReplyService {
 
     private final ReplyRepository replyRepository;
     private final TopicRepository topicRepository;
-    private final TopicService topicService;
 
     @Override
     @Transactional
     public ReplyDto addReply(ReplyDto replyDto) {
         var existingTopic = topicRepository.findByTitle(replyDto.getTopicTitle());
-        System.out.println("title: " + replyDto.getTopicTitle());
+        if (existingTopic == null) {
+            throw new ForoAluraHubExceptions(
+                    HttpStatus.NOT_FOUND,
+                    List.of("Topic not found", "maybe not created yet"),
+                    TOPIC_NOT_FOUND,
+                    TOPIC_SEARCH
+            );
+        }
         Reply reply = convertDtoToEntity(replyDto);
         existingTopic.getReplies().add(reply);
 
@@ -68,8 +73,8 @@ public class ReplyService implements IReplyService {
 
     @Override
     @Transactional
-    public GeneralRespose deleteReply(Integer ReplyId) {
-        var existingReply = replyRepository.findById(ReplyId.longValue())
+    public GeneralResponse deleteReply(Integer replyId) {
+        var existingReply = replyRepository.findById(replyId.longValue())
                 .orElseThrow(() -> new ForoAluraHubExceptions(
                         HttpStatus.NOT_FOUND,
                         List.of("Reply not found", "maybe it was deleted"),
@@ -77,7 +82,7 @@ public class ReplyService implements IReplyService {
                         REPLY_SEARCH
                 ));
         replyRepository.delete(existingReply);
-        return GeneralRespose.builder()
+        return GeneralResponse.builder()
                 .message(REPLY_DELETED)
                 .status(HttpStatus.OK)
                 .build();

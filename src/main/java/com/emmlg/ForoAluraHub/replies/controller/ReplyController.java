@@ -2,12 +2,11 @@ package com.emmlg.ForoAluraHub.replies.controller;
 
 import com.emmlg.ForoAluraHub.replies.dto.ReplyDto;
 import com.emmlg.ForoAluraHub.replies.service.ReplyService;
-import com.emmlg.ForoAluraHub.util.GeneralRespose;
+import com.emmlg.ForoAluraHub.util.GeneralResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,7 +40,7 @@ public class ReplyController {
     }
 
     @DeleteMapping("/{replyId}")
-    public GeneralRespose delete(@PathVariable Integer replyId) {
+    public GeneralResponse delete(@PathVariable Integer replyId) {
 
         return replyService.deleteReply(replyId);
     }

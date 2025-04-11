@@ -2,11 +2,10 @@ package com.emmlg.ForoAluraHub.curso.controller;
 
 import com.emmlg.ForoAluraHub.curso.dto.CourseCategoryDto;
 import com.emmlg.ForoAluraHub.curso.service.CourseCategoryService;
-import com.emmlg.ForoAluraHub.util.GeneralRespose;
+import com.emmlg.ForoAluraHub.util.GeneralResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -64,7 +63,7 @@ public class CategoryController {
     @Operation(summary = "Delete category")
     @ApiResponse(responseCode = "200", description = "Category deleted successfully")
     @ApiResponse(responseCode = "404", description = "Category not found")
-    public GeneralRespose deleteCategory(@PathVariable String categoryName) {
+    public GeneralResponse deleteCategory(@PathVariable String categoryName) {
 
         return courseCategoryService.deleteCategory(categoryName);
     }

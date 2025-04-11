@@ -14,7 +14,7 @@ import java.io.Serializable;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class GeneralRespose implements Serializable {
+public class GeneralResponse implements Serializable {
     private String message;
     private HttpStatus status;
 

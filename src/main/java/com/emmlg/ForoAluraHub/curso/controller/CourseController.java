@@ -4,7 +4,7 @@ package com.emmlg.ForoAluraHub.curso.controller;
 import com.emmlg.ForoAluraHub.Exceptions.ForoAluraHubExceptions;
 import com.emmlg.ForoAluraHub.curso.dto.CourseDto;
 import com.emmlg.ForoAluraHub.curso.service.CourseService;
-import com.emmlg.ForoAluraHub.util.GeneralRespose;
+import com.emmlg.ForoAluraHub.util.GeneralResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -77,7 +77,7 @@ public class CourseController {
     @DeleteMapping()
     @ResponseStatus(HttpStatus.OK)
     @ApiResponse(responseCode = "200", description = "Course deleted successfully")
-    public GeneralRespose deleteCourse(@RequestParam String courseName) {
+    public GeneralResponse deleteCourse(@RequestParam String courseName) {
         return courseService.removeCourse(courseName);
     }
 

@@ -1,8 +1,7 @@
 package com.emmlg.ForoAluraHub.replies.service;
 
 import com.emmlg.ForoAluraHub.replies.dto.ReplyDto;
-import com.emmlg.ForoAluraHub.replies.modelo.Reply;
-import com.emmlg.ForoAluraHub.util.GeneralRespose;
+import com.emmlg.ForoAluraHub.util.GeneralResponse;
 
 import java.util.List;
 
@@ -14,6 +13,6 @@ public interface IReplyService {
     
     ReplyDto updateReply(ReplyDto replyDto, Integer replyId);
 
-    GeneralRespose deleteReply(Integer ReplyId);
+    GeneralResponse deleteReply(Integer ReplyId);
 
 }

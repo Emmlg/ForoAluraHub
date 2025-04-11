@@ -5,7 +5,7 @@ import com.emmlg.ForoAluraHub.Exceptions.ForoAluraHubExceptions;
 import com.emmlg.ForoAluraHub.curso.dto.CourseCategoryDto;
 import com.emmlg.ForoAluraHub.curso.repository.CategoryRepository;
 import com.emmlg.ForoAluraHub.util.ConvertDtoToEntity;
-import com.emmlg.ForoAluraHub.util.GeneralRespose;
+import com.emmlg.ForoAluraHub.util.GeneralResponse;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -80,7 +80,7 @@ public class CourseCategoryService implements ICourseCategoryService {
 
     @Transactional
     @Override
-    public GeneralRespose deleteCategory(String categoryName) throws ForoAluraHubExceptions {
+    public GeneralResponse deleteCategory(String categoryName) throws ForoAluraHubExceptions {
         var category = categoryRepository.findByCategoryName(categoryName);
 
         if (category == null)
@@ -91,7 +91,7 @@ public class CourseCategoryService implements ICourseCategoryService {
                     CATEGORY_NOT_FOUND);
 
         categoryRepository.delete(category);
-        return new GeneralRespose(CATEGORY_DELETED, HttpStatus.OK);
+        return new GeneralResponse(CATEGORY_DELETED, HttpStatus.OK);
 
     }
 
