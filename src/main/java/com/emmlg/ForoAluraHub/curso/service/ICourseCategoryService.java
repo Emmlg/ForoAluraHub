@@ -1,7 +1,7 @@
 package com.emmlg.ForoAluraHub.curso.service;
 
 import com.emmlg.ForoAluraHub.curso.dto.CourseCategoryDto;
-import com.emmlg.ForoAluraHub.util.GeneralRespose;
+import com.emmlg.ForoAluraHub.util.GeneralResponse;
 
 import java.util.List;
 
@@ -15,6 +15,6 @@ public interface ICourseCategoryService {
 
     CourseCategoryDto updateCategory(String categoryName, CourseCategoryDto courseCategoryDto);
 
-    GeneralRespose deleteCategory(String categoryName);
+    GeneralResponse deleteCategory(String categoryName);
 }
 

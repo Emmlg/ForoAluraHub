@@ -1,10 +1,9 @@
 package com.emmlg.ForoAluraHub.topics.service;
 
 import com.emmlg.ForoAluraHub.topics.dto.TopicDto;
-import com.emmlg.ForoAluraHub.util.GeneralRespose;
+import com.emmlg.ForoAluraHub.util.GeneralResponse;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public interface ITopicService {
@@ -31,19 +30,19 @@ public interface ITopicService {
 
     TopicDto updateTopic(TopicDto topicoDto, Integer topicId);
 
-    GeneralRespose deleteTopic(Integer topicId);
+    GeneralResponse deleteTopic(Integer topicId);
 
-    GeneralRespose deleteTopicByTitle(String topicTitle);
+    GeneralResponse deleteTopicByTitle(String topicTitle);
 
-    GeneralRespose deleteTopicByStatus(String status);
+    GeneralResponse deleteTopicByStatus(String status);
 
-    GeneralRespose deleteTopicByCreationDate(LocalDate creationDate);
+    GeneralResponse deleteTopicByCreationDate(LocalDate creationDate);
 
-    GeneralRespose deleteTopicByRangeOfTime(LocalDate startDate, LocalDate endDate);
+    GeneralResponse deleteTopicByRangeOfTime(LocalDate startDate, LocalDate endDate);
 
-    GeneralRespose deleteTopicByCourseName(String courseName);
+    GeneralResponse deleteTopicByCourseName(String courseName);
 
-    GeneralRespose deleteTopicByCourseCategory(String courseCategory);
+    GeneralResponse deleteTopicByCourseCategory(String courseCategory);
 
 
 }

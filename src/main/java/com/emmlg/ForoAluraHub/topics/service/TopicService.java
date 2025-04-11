@@ -5,7 +5,7 @@ import com.emmlg.ForoAluraHub.curso.repository.CourseRepository;
 import com.emmlg.ForoAluraHub.topics.dto.TopicDto;
 import com.emmlg.ForoAluraHub.topics.modelo.Topic;
 import com.emmlg.ForoAluraHub.topics.repository.TopicRepository;
-import com.emmlg.ForoAluraHub.util.GeneralRespose;
+import com.emmlg.ForoAluraHub.util.GeneralResponse;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -215,7 +215,7 @@ public class TopicService implements ITopicService {
 
     @Override
     @Transactional
-    public GeneralRespose deleteTopic(Integer topicId) {
+    public GeneralResponse deleteTopic(Integer topicId) {
         boolean topicExists = topicRepository.existsById(Long.valueOf(topicId));
         if (!topicExists)
             throw new ForoAluraHubExceptions(
@@ -224,12 +224,12 @@ public class TopicService implements ITopicService {
                     TOPIC_NOT_FOUND,
                     TOPIC_SEARCH);
         topicRepository.deleteById(Long.valueOf(topicId));
-        return new GeneralRespose(TOPIC_DELETED + "Id = " + topicId, HttpStatus.OK);
+        return new GeneralResponse(TOPIC_DELETED + "Id = " + topicId, HttpStatus.OK);
     }
 
     @Override
     @Transactional
-    public GeneralRespose deleteTopicByTitle(String topicTitle) {
+    public GeneralResponse deleteTopicByTitle(String topicTitle) {
         var topicExists = topicRepository.findByTitle(topicTitle);
         if (topicExists == null)
             throw new ForoAluraHubExceptions(
@@ -238,13 +238,13 @@ public class TopicService implements ITopicService {
                     TOPIC_NOT_FOUND,
                     TOPIC_SEARCH);
         topicRepository.deleteByTitle(topicTitle);
-        return new GeneralRespose(TOPIC_DELETED + "With Title = " + topicTitle, HttpStatus.OK);
+        return new GeneralResponse(TOPIC_DELETED + "With Title = " + topicTitle, HttpStatus.OK);
 
     }
 
     @Override
     @Transactional
-    public GeneralRespose deleteTopicByStatus(String status) {
+    public GeneralResponse deleteTopicByStatus(String status) {
         var topicExists = topicRepository.findByStatus(status);
         if (topicExists.isEmpty())
             throw new ForoAluraHubExceptions(
@@ -253,12 +253,12 @@ public class TopicService implements ITopicService {
                     TOPIC_NOT_FOUND,
                     TOPIC_SEARCH);
         topicRepository.deleteByStatus(status);
-        return new GeneralRespose(TOPIC_DELETED + "With Status = " + status, HttpStatus.OK);
+        return new GeneralResponse(TOPIC_DELETED + "With Status = " + status, HttpStatus.OK);
     }
 
     @Override
     @Transactional
-    public GeneralRespose deleteTopicByCreationDate(LocalDate creationDate) {
+    public GeneralResponse deleteTopicByCreationDate(LocalDate creationDate) {
         var topicExists = topicRepository.findByCreationDate(creationDate);
         if (topicExists.isEmpty())
             throw new ForoAluraHubExceptions(
@@ -267,12 +267,12 @@ public class TopicService implements ITopicService {
                     TOPIC_NOT_FOUND,
                     TOPIC_SEARCH);
         topicRepository.deleteByCreationDate(creationDate);
-        return new GeneralRespose(TOPIC_DELETED + "With Creation Date = " + creationDate, HttpStatus.OK);
+        return new GeneralResponse(TOPIC_DELETED + "With Creation Date = " + creationDate, HttpStatus.OK);
     }
 
     @Override
     @Transactional
-    public GeneralRespose deleteTopicByRangeOfTime(LocalDate startDate, LocalDate endDate) {
+    public GeneralResponse deleteTopicByRangeOfTime(LocalDate startDate, LocalDate endDate) {
         var topicExists = topicRepository.findByCreationDateBetweenOrderByCreationDateAsc(startDate, endDate);
         if (topicExists.isEmpty())
             throw new ForoAluraHubExceptions(
@@ -281,12 +281,12 @@ public class TopicService implements ITopicService {
                     TOPIC_NOT_FOUND,
                     TOPIC_SEARCH);
         topicRepository.deleteByCreationDateBetween(startDate, endDate);
-        return new GeneralRespose(TOPIC_DELETED + "With Creation Date Between = " + startDate + " and " + endDate, HttpStatus.OK);
+        return new GeneralResponse(TOPIC_DELETED + "With Creation Date Between = " + startDate + " and " + endDate, HttpStatus.OK);
     }
 
     @Override
     @Transactional
-    public GeneralRespose deleteTopicByCourseName(String courseName) {
+    public GeneralResponse deleteTopicByCourseName(String courseName) {
         var topicExists = topicRepository.findByCourse_CourseName(courseName);
         if (topicExists.isEmpty())
             throw new ForoAluraHubExceptions(
@@ -295,12 +295,12 @@ public class TopicService implements ITopicService {
                     TOPIC_NOT_FOUND,
                     TOPIC_SEARCH);
         topicRepository.deleteByCourse_CourseName(courseName);
-        return new GeneralRespose(TOPIC_DELETED + "with Course Name = " + courseName, HttpStatus.OK);
+        return new GeneralResponse(TOPIC_DELETED + "with Course Name = " + courseName, HttpStatus.OK);
     }
 
     @Override
     @Transactional
-    public GeneralRespose deleteTopicByCourseCategory(String courseCategory) {
+    public GeneralResponse deleteTopicByCourseCategory(String courseCategory) {
 
         var topicExists = topicRepository.findByCourseCategoryCategoryName(courseCategory);
         if (topicExists.isEmpty())
@@ -310,6 +310,6 @@ public class TopicService implements ITopicService {
                     TOPIC_NOT_FOUND,
                     TOPIC_SEARCH);
         topicRepository.deleteByCourse_Category_CategoryName(courseCategory);
-        return new GeneralRespose(TOPIC_DELETED + "With Course Category = " + courseCategory, HttpStatus.OK);
+        return new GeneralResponse(TOPIC_DELETED + "With Course Category = " + courseCategory, HttpStatus.OK);
     }
 }

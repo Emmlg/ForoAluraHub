@@ -1,19 +1,17 @@
 package com.emmlg.ForoAluraHub.curso.service;
 
 import com.emmlg.ForoAluraHub.Exceptions.ForoAluraHubExceptions;
-import com.emmlg.ForoAluraHub.curso.dto.CourseCategoryDto;
 import com.emmlg.ForoAluraHub.curso.dto.CourseDto;
 import com.emmlg.ForoAluraHub.curso.modelo.Course;
 import com.emmlg.ForoAluraHub.curso.modelo.CourseCategory;
 import com.emmlg.ForoAluraHub.curso.repository.CategoryRepository;
 import com.emmlg.ForoAluraHub.curso.repository.CourseRepository;
-import com.emmlg.ForoAluraHub.util.GeneralRespose;
+import com.emmlg.ForoAluraHub.util.GeneralResponse;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -152,7 +150,7 @@ public class CourseService implements ICourseService {
 
     @Override
     @Transactional
-    public GeneralRespose removeCourse(String courseName) throws ForoAluraHubExceptions {
+    public GeneralResponse removeCourse(String courseName) throws ForoAluraHubExceptions {
         boolean courseExists = courseRepository.existsByCourseNameIgnoreCase(courseName);
         if (!courseExists)
             throw new ForoAluraHubExceptions(
@@ -161,7 +159,7 @@ public class CourseService implements ICourseService {
                     COURSE_NOT_FOUND,
                     COURSE_SEARCH);
         courseRepository.deleteByCourseName(courseName);
-        return GeneralRespose
+        return GeneralResponse
                 .builder()
                 .message("El curso " + courseName + " fue eliminado correctamente")
                 .status(HttpStatus.OK)

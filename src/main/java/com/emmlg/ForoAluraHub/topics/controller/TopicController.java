@@ -4,7 +4,7 @@ package com.emmlg.ForoAluraHub.topics.controller;
 import com.emmlg.ForoAluraHub.Exceptions.ForoAluraHubExceptions;
 import com.emmlg.ForoAluraHub.topics.dto.TopicDto;
 import com.emmlg.ForoAluraHub.topics.service.TopicService;
-import com.emmlg.ForoAluraHub.util.GeneralRespose;
+import com.emmlg.ForoAluraHub.util.GeneralResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -106,7 +106,7 @@ public class TopicController {
     @DeleteMapping("/{topicId}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Delete topic by ID")
-    public GeneralRespose deleteTopicById(@PathVariable Integer topicId) throws ForoAluraHubExceptions {
+    public GeneralResponse deleteTopicById(@PathVariable Integer topicId) throws ForoAluraHubExceptions {
 
         return topicsService.deleteTopic(topicId);
     }
@@ -114,7 +114,7 @@ public class TopicController {
     @DeleteMapping("/deleteByTitle")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Delete topic by title")
-    public GeneralRespose deleteTopicByTitle(@RequestParam String title) throws ForoAluraHubExceptions {
+    public GeneralResponse deleteTopicByTitle(@RequestParam String title) throws ForoAluraHubExceptions {
 
         return topicsService.deleteTopicByTitle(title);
     }
@@ -122,7 +122,7 @@ public class TopicController {
     @DeleteMapping("/deleteByStatus")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Delete topic by status")
-    public GeneralRespose deleteTopicByStatus(@RequestParam String status) throws ForoAluraHubExceptions {
+    public GeneralResponse deleteTopicByStatus(@RequestParam String status) throws ForoAluraHubExceptions {
 
         return topicsService.deleteTopicByStatus(status);
     }
@@ -130,7 +130,7 @@ public class TopicController {
     @DeleteMapping("/deleteByCreationDate")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Delete topic by creation date")
-    public GeneralRespose deleteTopicByCreationDate(@RequestParam LocalDate creationDate) throws ForoAluraHubExceptions {
+    public GeneralResponse deleteTopicByCreationDate(@RequestParam LocalDate creationDate) throws ForoAluraHubExceptions {
 
         return topicsService.deleteTopicByCreationDate(creationDate);
     }
@@ -138,7 +138,7 @@ public class TopicController {
     @DeleteMapping("/deleteByDateRange")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Delete topic by date range")
-    public GeneralRespose deleteTopicByDateRange(@RequestParam LocalDate startDate, @RequestParam LocalDate endDate) throws ForoAluraHubExceptions {
+    public GeneralResponse deleteTopicByDateRange(@RequestParam LocalDate startDate, @RequestParam LocalDate endDate) throws ForoAluraHubExceptions {
 
         return topicsService.deleteTopicByRangeOfTime(startDate, endDate);
     }
@@ -146,7 +146,7 @@ public class TopicController {
     @DeleteMapping("/deleteByCourseName")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Delete topic by course name")
-    public GeneralRespose deleteTopicByCourseName(@RequestParam String courseName) throws ForoAluraHubExceptions {
+    public GeneralResponse deleteTopicByCourseName(@RequestParam String courseName) throws ForoAluraHubExceptions {
 
         return topicsService.deleteTopicByCourseName(courseName);
     }
@@ -154,7 +154,7 @@ public class TopicController {
     @DeleteMapping("/deleteByCourseCategory")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Delete topic by course category")
-    public GeneralRespose deleteTopicByCourseCategory(@RequestParam String courseCategory) throws ForoAluraHubExceptions {
+    public GeneralResponse deleteTopicByCourseCategory(@RequestParam String courseCategory) throws ForoAluraHubExceptions {
 
         return topicsService.deleteTopicByCourseCategory(courseCategory);
     }

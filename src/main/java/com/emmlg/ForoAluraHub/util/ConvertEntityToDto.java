@@ -4,6 +4,8 @@ import com.emmlg.ForoAluraHub.curso.dto.CourseCategoryDto;
 import com.emmlg.ForoAluraHub.curso.dto.CourseDto;
 import com.emmlg.ForoAluraHub.curso.modelo.Course;
 import com.emmlg.ForoAluraHub.curso.modelo.CourseCategory;
+import com.emmlg.ForoAluraHub.replies.dto.ReplyDto;
+import com.emmlg.ForoAluraHub.replies.modelo.Reply;
 import com.emmlg.ForoAluraHub.topics.dto.TopicDto;
 import com.emmlg.ForoAluraHub.topics.modelo.Topic;
 
@@ -99,5 +101,17 @@ public class ConvertEntityToDto {
                                 .CursoCategory(topic.getCourse().getCategory().getCategoryName())
                                 .replies(topic.getReplies()).build())
                 .collect(Collectors.toList());
+    }
+
+    public static ReplyDto convertEntityToDto(Reply reply) {
+        if (reply == null)
+            return null;
+        return ReplyDto.builder()
+                .replyId(reply.getReplyId())
+                .replyMessage(reply.getMessage())
+                .creationDate(reply.getCreationDate())
+                .updateDate(reply.getUpdateDate())
+                .build();
+
     }
 }

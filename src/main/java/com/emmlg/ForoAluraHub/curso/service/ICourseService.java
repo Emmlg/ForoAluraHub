@@ -1,7 +1,7 @@
 package com.emmlg.ForoAluraHub.curso.service;
 
 import com.emmlg.ForoAluraHub.curso.dto.CourseDto;
-import com.emmlg.ForoAluraHub.util.GeneralRespose;
+import com.emmlg.ForoAluraHub.util.GeneralResponse;
 
 import java.util.List;
 
@@ -21,5 +21,5 @@ public interface ICourseService {
 
     public CourseDto modifyCourse(String courseName, CourseDto courseDto);
 
-    public GeneralRespose removeCourse(String courseName);
+    public GeneralResponse removeCourse(String courseName);
 }
