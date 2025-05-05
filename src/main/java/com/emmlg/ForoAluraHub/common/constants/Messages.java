@@ -51,5 +51,11 @@ public class Messages {
     public static final String REPLY_ALREADY_EXISTS = "Reply Already Exists";
     public static final String REPLY_DELETED = "Reply Deleted with success";
 
+    // user
+    public static final String USER_SEARCH = "Searching User";
+    public static final String USER_NOT_FOUND = "User Not Found";
+    public static final String USER_ALREADY_EXISTS = "User Already Exists";
+    public static final String USER_DELETED = "User Deleted with success";
+
 
 }

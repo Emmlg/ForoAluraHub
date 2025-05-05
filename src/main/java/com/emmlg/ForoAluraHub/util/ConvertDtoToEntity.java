@@ -8,6 +8,10 @@ import com.emmlg.ForoAluraHub.replies.dto.ReplyDto;
 import com.emmlg.ForoAluraHub.replies.modelo.Reply;
 import com.emmlg.ForoAluraHub.topics.dto.TopicDto;
 import com.emmlg.ForoAluraHub.topics.modelo.Topic;
+import com.emmlg.ForoAluraHub.user.dto.UserDto;
+import com.emmlg.ForoAluraHub.user.modelo.User;
+
+import java.util.List;
 
 public class ConvertDtoToEntity {
 
@@ -64,4 +68,21 @@ public class ConvertDtoToEntity {
         return reply;
     }
 
+    public static User convertDtoToEntity(UserDto userDto) {
+        if (userDto == null) {
+            return null;
+        }
+        User user = new User();
+        user.setUserId(userDto.getUserId());
+        user.setUserName(userDto.getUserName());
+        user.setUserEmail(userDto.getUserEmail());
+        user.setUserPassword(userDto.getUserPassword());
+        user.setUserRole(userDto.getUserRole());
+        user.setTopics(userDto.getTopicOrReplyList() == null ? null :
+                userDto.getTopicOrReplyList().stream()
+                        .filter(item -> item instanceof Topic)
+                        .map(item -> (Topic) item)
+                        .toList());
+        return user;
+    }
 }

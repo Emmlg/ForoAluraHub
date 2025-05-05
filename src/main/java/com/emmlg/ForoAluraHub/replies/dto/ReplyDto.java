@@ -39,8 +39,12 @@ public class ReplyDto implements Serializable {
     private LocalDate updateDate;
 
     @Schema(description = "Nombre del topico")
-    @NotBlank
     @JsonProperty("topic_Title")
+    @NotBlank
     private String topicTitle;
 
+    @Schema(description = "Author de la respuesta")
+    @JsonProperty("author_Response")
+    @NotBlank
+    private String authorResponse;
 }

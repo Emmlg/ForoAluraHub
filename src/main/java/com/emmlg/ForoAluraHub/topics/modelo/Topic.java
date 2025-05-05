@@ -4,6 +4,7 @@ package com.emmlg.ForoAluraHub.topics.modelo;
 import com.emmlg.ForoAluraHub.curso.modelo.Course;
 import com.emmlg.ForoAluraHub.replies.modelo.Reply;
 
+import com.emmlg.ForoAluraHub.user.modelo.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -54,17 +55,15 @@ public class Topic {
     @JoinColumn(name = "fk_topicId")
     private List<Reply> replies;
 
-    // PENDIENTE
-    /* relacion Topicos(M)-->(1)Usuario
+
+    /* relacion Topicos(M)-->(1)Usuario BIDIRECCIONAL
      * muchos topicos pueden tener un usuario
      * un usuario puede eliminar topicos, pero topicos no
      * al ver el usuario puedo ver sus topicos
      */
-
-    /*@JsonIgnore  // Evita la serialización recursiva en el lado del usuario
     @ManyToOne
-    @JoinColumn(name="fk_userId")
-    private Usuario author;*/
+    @JoinColumn(name = "fk_user_id")
+    private User author;
 
 
 }
