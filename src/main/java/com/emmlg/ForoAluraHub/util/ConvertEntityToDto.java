@@ -8,6 +8,8 @@ import com.emmlg.ForoAluraHub.replies.dto.ReplyDto;
 import com.emmlg.ForoAluraHub.replies.modelo.Reply;
 import com.emmlg.ForoAluraHub.topics.dto.TopicDto;
 import com.emmlg.ForoAluraHub.topics.modelo.Topic;
+import com.emmlg.ForoAluraHub.user.dto.UserDto;
+import com.emmlg.ForoAluraHub.user.modelo.User;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -78,9 +80,14 @@ public class ConvertEntityToDto {
                 .status(topic.getStatus())
                 .creationDate(topic.getCreationDate())
                 .updateDate(topic.getUpdateDate())
+                .authorTopic(topic.getAuthor().getUserName())
                 .CursoName(topic.getCourse().getCourseName())
                 .CursoCategory(topic.getCourse().getCategory().getCategoryName())
-                .replies(topic.getReplies()).build();
+                .replies(topic.getReplies() == null ? null :
+                        topic.getReplies().stream()
+                                .map(ConvertEntityToDto::convertEntityToDto)
+                                .collect(Collectors.toList()
+                                )).build();
     }
 
     public static List<TopicDto> convertTopicListToDto(List<Topic> topics) {
@@ -99,7 +106,11 @@ public class ConvertEntityToDto {
                                 .updateDate(topic.getUpdateDate())
                                 .CursoName(topic.getCourse().getCourseName())
                                 .CursoCategory(topic.getCourse().getCategory().getCategoryName())
-                                .replies(topic.getReplies()).build())
+                                .replies(topic.getReplies() == null ? null :
+                                        topic.getReplies().stream()
+                                                .map(ConvertEntityToDto::convertEntityToDto)
+                                                .collect(Collectors.toList()))
+                                .build())
                 .collect(Collectors.toList());
     }
 
@@ -111,7 +122,42 @@ public class ConvertEntityToDto {
                 .replyMessage(reply.getMessage())
                 .creationDate(reply.getCreationDate())
                 .updateDate(reply.getUpdateDate())
+                .authorResponse(reply.getAuthorResponse().getUserName())
                 .build();
 
     }
+
+    public static UserDto convertEntityToDto(User user) {
+        if (user == null) return null;
+
+        List<Object> topicOrReplyList = null;
+        if (user.getTopics() != null) {
+            topicOrReplyList = user.getTopics().stream()
+                    .map(topic -> TopicDto.builder()
+                            .topicoId(topic.getTopicId())
+                            .title(topic.getTitle())
+                            .message(topic.getMessage())
+                            .status(topic.getStatus())
+                            .creationDate(topic.getCreationDate())
+                            .updateDate(topic.getUpdateDate())
+                            .CursoName(topic.getCourse().getCourseName())
+                            .CursoCategory(topic.getCourse().getCategory().getCategoryName())
+                            .replies(topic.getReplies() == null ? null :
+                                    topic.getReplies().stream()
+                                            .map(ConvertEntityToDto::convertEntityToDto)
+                                            .collect(Collectors.toList()))
+                            .build())
+                    .collect(Collectors.toList());
+        }
+
+        return UserDto.builder()
+                .userId(user.getUserId())
+                .userName(user.getUserName())
+                .userEmail(user.getUserEmail())
+                .userPassword(user.getUserPassword())
+                .userRole(user.getUserRole())
+                .topicOrReplyList(topicOrReplyList)
+                .build();
+    }
+
 }

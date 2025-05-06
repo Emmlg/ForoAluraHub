@@ -1,8 +1,10 @@
 package com.emmlg.ForoAluraHub.topics.dto;
 
 
+import com.emmlg.ForoAluraHub.replies.dto.ReplyDto;
 import com.emmlg.ForoAluraHub.replies.modelo.Reply;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -51,7 +53,11 @@ public class TopicDto implements Serializable {
     private String CursoCategory;
 
     @Schema(description = "Respuesta del topico")
-    private List<Reply> replies;
+    private List<ReplyDto> replies;
 
+    @NotBlank
+    @JsonProperty("author_Topic")
+    @Schema(description = "Author del topico")
+    private String authorTopic;
 
 }

@@ -5,6 +5,7 @@ import com.emmlg.ForoAluraHub.curso.repository.CourseRepository;
 import com.emmlg.ForoAluraHub.topics.dto.TopicDto;
 import com.emmlg.ForoAluraHub.topics.modelo.Topic;
 import com.emmlg.ForoAluraHub.topics.repository.TopicRepository;
+import com.emmlg.ForoAluraHub.user.repository.UserRepository;
 import com.emmlg.ForoAluraHub.util.GeneralResponse;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -24,14 +25,28 @@ public class TopicService implements ITopicService {
 
     private final TopicRepository topicRepository;
     private final CourseRepository courseRepository;
+    private final UserRepository userRepository;
 
 
     @Override
     @Transactional
     public TopicDto addTopic(TopicDto topicDto) throws ForoAluraHubExceptions {
 
+        System.out.println("userDto = " + topicDto.getAuthorTopic());
         // 1. traer datos de usuario
-        //2. validar noduplicados
+        // 2. validar noduplicados
+        // 3. asignar a un curso
+        // 4. guardar topicos
+
+        var existingAuthor = userRepository.findByUserName(topicDto.getAuthorTopic());
+        if (existingAuthor.isEmpty()) {
+            throw new ForoAluraHubExceptions(
+                    HttpStatus.NOT_FOUND,
+                    List.of("user not found"),
+                    USER_NOT_FOUND,
+                    USER_SEARCH);
+        }
+
         var existSameTopic = topicRepository.findByTitle(topicDto.getTitle());
         if (existSameTopic != null)
             throw new ForoAluraHubExceptions(
@@ -50,6 +65,7 @@ public class TopicService implements ITopicService {
 
         Topic topicnew = convertDtoToEntity(topicDto);
         topicnew.setCourse(course);
+        topicnew.setAuthor(existingAuthor.get());
 
         return convertEntityToDto(topicRepository.save(topicnew));
     }

@@ -5,6 +5,7 @@ import com.emmlg.ForoAluraHub.replies.dto.ReplyDto;
 import com.emmlg.ForoAluraHub.replies.modelo.Reply;
 import com.emmlg.ForoAluraHub.replies.repository.ReplyRepository;
 import com.emmlg.ForoAluraHub.topics.repository.TopicRepository;
+import com.emmlg.ForoAluraHub.user.repository.UserRepository;
 import com.emmlg.ForoAluraHub.util.GeneralResponse;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,7 @@ public class ReplyService implements IReplyService {
 
     private final ReplyRepository replyRepository;
     private final TopicRepository topicRepository;
+    private final UserRepository userRepository;
 
     @Override
     @Transactional
@@ -37,7 +39,17 @@ public class ReplyService implements IReplyService {
                     TOPIC_SEARCH
             );
         }
+        var authorOpt = userRepository.findByUserName(replyDto.getAuthorResponse());
+        if (authorOpt.isEmpty()) {
+            throw new ForoAluraHubExceptions(
+                    HttpStatus.NOT_FOUND,
+                    List.of("User not found", "maybe not created yet"),
+                    USER_NOT_FOUND,
+                    USER_SEARCH
+            );
+        }
         Reply reply = convertDtoToEntity(replyDto);
+        reply.setAuthorResponse(authorOpt.get());
         existingTopic.getReplies().add(reply);
 
         return convertEntityToDto(replyRepository.save(reply));
@@ -62,8 +74,7 @@ public class ReplyService implements IReplyService {
                         REPLY_NOT_FOUND,
                         REPLY_SEARCH
                 ));
-
-
+// solo puede actualizar datos del mensaje no del autor
         existingReply.setMessage(replyDto.getReplyMessage());
         existingReply.setUpdateDate(replyDto.getUpdateDate());
 

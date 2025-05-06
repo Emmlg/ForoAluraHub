@@ -1,5 +1,6 @@
 package com.emmlg.ForoAluraHub.replies.modelo;
 
+import com.emmlg.ForoAluraHub.user.modelo.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +13,6 @@ import java.util.Date;
 @Entity
 @Table(name = "Replies")
 public class Reply {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,16 +28,8 @@ public class Reply {
     @Column(name = "update_date")
     private LocalDate updateDate;
 
-
-    /* Many to one Respuestas(M) --> (1) usuario
-     * esto sera bidireccional
-     * - usuarios pueden escribir respuesas
-     * - usuarios pueden ver quien respondio
-     * */
-    // datos del usuario que escribio
-    /*   @JsonBackReference  // Evita la recursión al serializar el usuario de la respuesta
     @ManyToOne
-    @JoinColumn(name = "fk_userId")
-    private Usuario author;*/
+    @JoinColumn(name = "fk_user_id") // esta es la FK en la tabla de Respuesta
+    private User authorResponse;
 
 }
