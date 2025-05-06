@@ -2,7 +2,9 @@ package com.emmlg.ForoAluraHub.curso.modelo;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
@@ -14,9 +16,9 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_course")
-    private Integer courseId;
+    private long courseId;
 
-    @Column(name = "course_title", unique = true)
+    @Column(name = "course_title")
     private String courseName;
 
     // relacion con categorias

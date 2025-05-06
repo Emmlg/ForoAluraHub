@@ -14,8 +14,8 @@ public class CourseCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_category")
-    private Integer categoryId;
+    private long categoryId;
 
-    @Column(name = "category_name", unique = true)
-    private String categoryName;
+    @Column(name = "category_name")
+    private String Categoryname;
 }
